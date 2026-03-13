@@ -1,4 +1,4 @@
-package io.github.kaypes.model;
+package io.github.kaypes.model.pessoa;
 
 public class Pessoa {
     private String nome;
@@ -15,5 +15,9 @@ public class Pessoa {
 
     public String getNome() {
         return nome;
+    }
+
+    public String getCpf() {
+        return cpf;
     }
 }

@@ -1,4 +1,4 @@
-package io.github.kaypes.model;
+package io.github.kaypes.model.financeiro;
 
 public enum FormaPagamento {
     A_VISTA {

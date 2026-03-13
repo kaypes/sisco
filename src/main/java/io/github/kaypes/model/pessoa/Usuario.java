@@ -1,4 +1,4 @@
-package io.github.kaypes.model;
+package io.github.kaypes.model.pessoa;
 
 public class Usuario extends Pessoa {
     private PerfilAcesso perfil;
