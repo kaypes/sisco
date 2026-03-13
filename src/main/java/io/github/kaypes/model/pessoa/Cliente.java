@@ -3,7 +3,6 @@ package io.github.kaypes.model.pessoa;
 import io.github.kaypes.model.financeiro.Venda;
 
 import java.util.ArrayList;
-import java.util.Arraylist;
 import java.util.List;
 
 public class Cliente extends Pessoa {
