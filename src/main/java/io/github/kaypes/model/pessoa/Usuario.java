@@ -15,4 +15,12 @@ public class Usuario extends Pessoa {
     public boolean temPermissaoGerencial() {
         return perfil == PerfilAcesso.ADMINISTRADOR || perfil == PerfilAcesso.GERENTE_FINANCEIRO;
     }
+
+    public void registrarAcesso() {
+        System.out.println("Login: " + getNome() + " (" + perfil + ")");
+    }
+
+    public void registrarAcesso(String ip) {
+        System.out.println("Login: " + getNome() + " (" + perfil + ") via IP: " + ip);
+    }
 }
