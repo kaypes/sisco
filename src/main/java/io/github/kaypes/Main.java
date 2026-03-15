@@ -1,6 +1,7 @@
 package io.github.kaypes;
 
-// Imports considerando a divisão de pacotes
+import io.github.kaypes.exception.VeiculoIndisponivel;
+import io.github.kaypes.exception.VeiculoNaoEncontrado;
 import io.github.kaypes.model.veiculo.*;
 import io.github.kaypes.model.pessoa.*;
 import io.github.kaypes.model.financeiro.*;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    static void main() {
         Scanner scanner = new Scanner(System.in);
 
         List<Veiculo> estoque = new ArrayList<>();
@@ -56,22 +57,7 @@ public class Main {
                         System.out.print("Digite a PLACA do veículo para vender: ");
                         String placa = scanner.nextLine();
 
-                        Veiculo veiculoEncontrado = null;
-                        for (Veiculo v : estoque) {
-                            if (v.getPlaca().equalsIgnoreCase(placa)) {
-                                veiculoEncontrado = v;
-                                break;
-                            }
-                        }
-
-                        if (veiculoEncontrado == null) {
-                            throw new SiscoException("Veículo não encontrado com a placa: " + placa);
-                        }
-                        if (veiculoEncontrado.getStatus() != StatusVeiculo.DISPONIVEL) {
-                            throw new SiscoException("Este veículo já foi vendido ou está indisponível.");
-                        }
-
-                        veiculoEncontrado.setStatus(StatusVeiculo.VENDIDO);
+                        Veiculo veiculoEncontrado = getVeiculo(estoque, placa);
 
                         double valorFinal = FormaPagamento.A_VISTA.calcularValorFinal(veiculoEncontrado.getPrecoVenda());
 
@@ -96,11 +82,10 @@ public class Main {
                         }
 
                         if (vSimulacao == null) {
-                            throw new SiscoException("Veículo não encontrado.");
+                            throw new VeiculoNaoEncontrado("Veículo não encontrado.");
                         }
 
-                        if (vSimulacao instanceof SimuladorFinanceiro) {
-                            SimuladorFinanceiro simulador = (SimuladorFinanceiro) vSimulacao;
+                        if (vSimulacao instanceof SimuladorFinanceiro simulador) {
 
                             System.out.print("Valor da Entrada: R$ ");
                             double entrada = Double.parseDouble(scanner.nextLine());
@@ -119,15 +104,15 @@ public class Main {
                         for (Venda v : vendasRealizadas) {
                             faturamentoTotal += v.getValorFinal();
                         }
-                        System.out.printf("\n💰 Faturamento Total da Concessionária: R$ %.2f\n", faturamentoTotal);
+                        System.out.printf("\nFaturamento Total da Concessionária: R$ %.2f\n", faturamentoTotal);
                         break;
 
                     case 0:
-                        System.out.println("Encerrando o sistema...");
+                        System.out.println("Encerrando o sistema");
                         break;
 
                     default:
-                        System.out.println("Opção inválida!");
+                        System.out.println("Opção inválida");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Erro de digitação: Por favor, insira apenas números válidos.");
@@ -141,5 +126,25 @@ public class Main {
         }
 
         scanner.close();
+    }
+
+    private static Veiculo getVeiculo(List<Veiculo> estoque, String placa) throws SiscoException {
+        Veiculo veiculoEncontrado = null;
+        for (Veiculo v : estoque) {
+            if (v.getPlaca().equalsIgnoreCase(placa)) {
+                veiculoEncontrado = v;
+                break;
+            }
+        }
+
+        if (veiculoEncontrado == null) {
+            throw new VeiculoNaoEncontrado("Veículo não encontrado com a placa: " + placa);
+        }
+        if (veiculoEncontrado.getStatus() != StatusVeiculo.DISPONIVEL) {
+            throw new VeiculoIndisponivel("Este veículo já foi vendido ou está indisponível.");
+        }
+
+        veiculoEncontrado.setStatus(StatusVeiculo.VENDIDO);
+        return veiculoEncontrado;
     }
 }
