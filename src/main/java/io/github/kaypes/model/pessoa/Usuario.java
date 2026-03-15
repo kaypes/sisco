@@ -12,6 +12,10 @@ public class Usuario extends Pessoa {
         return perfil;
     }
 
+    public void setPerfil(PerfilAcesso perfil) {
+        this.perfil = perfil;
+    }
+
     public boolean temPermissaoGerencial() {
         return perfil == PerfilAcesso.ADMINISTRADOR || perfil == PerfilAcesso.GERENTE_FINANCEIRO;
     }
