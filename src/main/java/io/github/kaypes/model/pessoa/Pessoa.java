@@ -1,8 +1,8 @@
 package io.github.kaypes.model.pessoa;
 
 public class Pessoa {
-    private String nome;
-    private String cpf;
+    private final String nome;
+    private final String cpf;
     private String telefone;
     private String email;
 
@@ -19,5 +19,21 @@ public class Pessoa {
 
     public String getCpf() {
         return cpf;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

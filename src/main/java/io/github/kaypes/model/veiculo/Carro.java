@@ -4,7 +4,7 @@ import io.github.kaypes.model.financeiro.Simulacao;
 import io.github.kaypes.model.financeiro.SimuladorFinanceiro;
 
 public class Carro extends Veiculo implements SimuladorFinanceiro {
-    private int numeroPortas;
+    private final int numeroPortas;
 
     public Carro(String placa, String marca, String modelo, int anoFabricacao, String cor, double km, double preco, int numeroPortas) {
         super(placa, marca, modelo, anoFabricacao, cor, km, preco);
