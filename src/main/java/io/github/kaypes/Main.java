@@ -13,13 +13,13 @@ import java.util.Scanner;
 
 public class Main {
     static void main() {
-        Scanner scanner = new Scanner(System.in);
+        var scanner = new Scanner(System.in);
 
         List<Veiculo> estoque = new ArrayList<>();
         List<Venda> vendasRealizadas = new ArrayList<>();
 
-        Usuario admin = new Usuario("Admin Chefe", "000.000.000-00", "999", "admin@sisco.com", PerfilAcesso.ADMINISTRADOR);
-        Cliente cliente = new Cliente("Maria Oliveira", "123.456.789-00", "777", "maria@gmail.com", "Rua A");
+        var admin = new Usuario("Admin Chefe", "000.000.000-00", "999", "admin@sisco.com", PerfilAcesso.ADMINISTRADOR);
+        var cliente = new Cliente("Maria Oliveira", "123.456.789-00", "777", "maria@gmail.com", "Rua A");
 
         estoque.add(new Carro("ABC-1234", "Toyota", "Corolla", 2024, "Prata", 0, 150000.0, 4));
         estoque.add(new Moto("DEF-5678", "Yamaha", "MT-09", 2024, "Azul", 0, 60000.0, 900));
@@ -61,7 +61,7 @@ public class Main {
 
                         double valorFinal = FormaPagamento.A_VISTA.calcularValorFinal(veiculoEncontrado.getPrecoVenda());
 
-                        Venda novaVenda = new Venda(veiculoEncontrado, cliente, admin, FormaPagamento.A_VISTA, valorFinal);
+                        var novaVenda = new Venda(veiculoEncontrado, cliente, admin, FormaPagamento.A_VISTA, valorFinal);
                         vendasRealizadas.add(novaVenda);
                         cliente.adicionarCompraAoHistorico(novaVenda);
 
