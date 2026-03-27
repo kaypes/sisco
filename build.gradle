@@ -1,9 +1,16 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group = 'io.github.kaypes'
 version = '1.0-SNAPSHOT'
+
+application {
+    // Aqui é onde a mágica acontece.
+    // Você NÃO coloca o caminho do arquivo, mas sim o PACOTE + CLASSE
+    mainClass = 'io.github.kaypes.Main' 
+}
 
 repositories {
     mavenCentral()
@@ -17,4 +24,8 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+application {
+    mainClass = 'io.github.kaypes.Main'
 }

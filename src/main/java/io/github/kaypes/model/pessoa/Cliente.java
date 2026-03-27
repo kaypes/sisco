@@ -9,8 +9,8 @@ public class Cliente extends Pessoa {
     private String endereco;
     private List<Venda> historicoDeCompras;
 
-    public Cliente(String nome, String cpf, String telefone, String email, String endereco) {
-        super(nome, cpf, telefone, email);
+    public Cliente(String nome, String cpf, String telefone, String email, String senha, String endereco) {
+        super(nome, cpf, telefone, email, senha);
         this.endereco = endereco;
         this.historicoDeCompras = new ArrayList<>();
     }

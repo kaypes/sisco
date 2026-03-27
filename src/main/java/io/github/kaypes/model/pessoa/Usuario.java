@@ -3,8 +3,8 @@ package io.github.kaypes.model.pessoa;
 public class Usuario extends Pessoa {
     private PerfilAcesso perfil;
 
-    public Usuario(String nome, String cpf, String telefone, String email, PerfilAcesso perfil) {
-        super(nome, cpf, telefone, email);
+    public Usuario(String nome, String cpf, String telefone, String email, String senha, PerfilAcesso perfil) {
+        super(nome, cpf, telefone, senha, email);
         this.perfil = perfil;
     }
 
