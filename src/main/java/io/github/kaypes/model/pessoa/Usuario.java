@@ -4,7 +4,7 @@ public class Usuario extends Pessoa {
     private PerfilAcesso perfil;
 
     public Usuario(String nome, String cpf, String telefone, String email, String senha, PerfilAcesso perfil) {
-        super(nome, cpf, telefone, senha, email);
+        super(nome, cpf, telefone, email, senha);
         this.perfil = perfil;
     }
 
